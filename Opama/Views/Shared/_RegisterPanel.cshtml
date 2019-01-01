@@ -1,0 +1,47 @@
+﻿<div id="registerPanel" class="panel" style="display: none">
+
+    <div class="span3 panelContent">
+
+        <h2>Register</h2>
+
+        @using (Html.BeginForm("register", "app", FormMethod.Post, new { id = "signUpForm" }))
+        {
+            @Html.ValidationSummary(true)
+            <input id="fname" name="Firstname" class="name_input" type="text" placeholder="First name" />
+            <input id="lname" name="Lastname" class="name_input" type="text" placeholder="Last name" />
+            <input id="reg_email" name="Email" type="text" placeholder="E-mail" />
+            <input id="reg_password" name="EncPassword" type="password" placeholder="Password" />
+            <input id="encParams" name="EncParams" type="hidden" />
+
+            <div class="password_strength_container">
+                <div id="password_strength_bg" class="password_strength_bg"></div>
+                <div id="password_strength" class="password_strength" style="width: 0%;"></div>
+                <div class="password_strength_separator" style="left: 25%;"></div>
+                <div class="password_strength_separator" style="left: 50%;"></div>
+                <div class="password_strength_separator" style="left: 75%;"></div>
+            </div>
+
+            <div class="password_strength_desc_container">
+                <a id="info_button" href="#" tabindex="-1" class="password_strength_icon"
+                   title="" data-original-title="Password tip"
+                   data-content="A good password is easy to remember but hard for a stranger to guess. Uncommon words work well, but only if you use several. Also helpful: non-standard uPPercasing, creative spelllling, personal neologisms, and non-obvious numbers and symbols (using $ for s or 0 for o is too obvious!)"
+                   data-placement="left"
+                   data-toggle="popover"
+                   data-trigger="hover">
+                    <img src="~/images/icon_spacer.gif" class="sprite_web_info" />
+                </a>
+                <div id="password_strength_desc"></div>
+                <div class="clearfix"></div>
+                <input id="reg_salt" name="salt" type="hidden" />
+                <input id="agreeToTerms" type="checkbox"> I agree to the @Html.ActionLink("terms", "terms")
+            </div>
+
+            <div class="clearfix"></div>
+
+            <button id="signUpButton" type="submit" class="btn btn-medium btn-success">Register</button>
+        }
+        <span class="signInLink">or <a id="signInLink" href="account/signin">sign in</a>.</span>
+
+    </div>
+
+</div>

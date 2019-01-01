@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Opama.ViewModels.ResetVM;
+
+<div class="row">
+    <div class="span7 offset4">
+        <h2>Reset account</h2><br />
+        Did you forget your Opama password? That's ok, you can reset your account. Unfortunately,
+        your stored secrets cannot be restored because they were encrypted using your old password.
+        What a reset effectivily means, is that your account will be deleted, including all of the
+        stored secrets. This is the price for security, we have no record of your password and
+        cannot decrypt your secrets any other way.<br />
+        <br />
+        If you're sure to delete your account, you can use the form below.<br />
+        As a security measure, supply the email address you used to sign up. After your account has
+        been deleted, you can register again using the same email address.<br />
+        <br />
+        @using (Html.BeginForm("reset", "app", FormMethod.Post, new { id = "resetForm" }))
+        {
+            @Html.ValidationSummary(true)
+            <input id="reset_email" name="Email" type="text" placeholder="E-mail" />
+            <input id="reset_code" name="EmailConfirmationCode" type="hidden" value="@Model.EMailConfirmationCode" />
+            <div class="clearfix"></div>
+            <button id="resetButton" type="submit" class="btn btn-medium btn-danger">Delete account</button>
+        }
+        <br />
+        Safe browsing.<br />
+    </div>
+</div>

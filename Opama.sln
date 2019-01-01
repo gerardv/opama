@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Opama", "Opama\Opama.csproj", "{E93C1B2A-D023-4884-8289-46E737A0403E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{506BFDB5-C6B4-4003-AFE2-BE3E6A0D2756}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E93C1B2A-D023-4884-8289-46E737A0403E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E93C1B2A-D023-4884-8289-46E737A0403E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E93C1B2A-D023-4884-8289-46E737A0403E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E93C1B2A-D023-4884-8289-46E737A0403E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {865D3B55-DE40-492A-A5DF-C60DB8B03E4B}
+	EndGlobalSection
+EndGlobal

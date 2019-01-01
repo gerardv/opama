@@ -1,0 +1,53 @@
+﻿<div id="newItemPanel" class="panel" style="display: none">
+
+    <div class="span4 panelContent">
+
+        @using (Html.BeginForm("/item/add", "item", FormMethod.Post, new { id = "newItemForm", @class = "form-horizontal newItemForm", autoComplete = "off", novalidate = "novalidate" }))
+        {
+        @*@Html.ValidationSummary(true)*@
+        <div class="control-group">
+            <label class="control-label">Label</label>
+            <div class="controls">
+                <input id="label" name="Label" type="text" placeholder="Label" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">URL</label>
+            <div class="controls">
+                <input id="website" name="Url" type="url" placeholder="Website" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Username</label>
+            <div class="controls">
+                <input name="Username" type="text" placeholder="Username" autocomplete="off" onfocus="this.removeAttribute('readonly');" readonly />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="password_{{Id}}">Password</label>
+            <div class="controls password">
+                <input type="password" id="concealedPassword_new" data-id="new" name="PasswordPlaceholder" value="Password" placeholder="Password" onfocus="this.removeAttribute('readonly');" readonly />
+                <input type="text" id="plainPassword_new" data-id="new" name="Password" placeholder="Password" style="display: none" autocomplete="off" />
+                <a href="#passwordGen" role="button" class="btn open-passwordGen" data-id="new" data-toggle="modal"><i class="icon-wrench"> </i></a>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">Email</label>
+            <div class="controls">
+                <input id="itemEmail" name="Email" type="email" placeholder="E-mail" autocomplete="off" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="remarks_{{Id}}">Remarks</label>
+            <div class="controls">
+                <textarea id="Remarks" name="Remarks" rows="3" placeholder="Remarks"></textarea>
+            </div>
+        </div>
+
+        <button id="submitNewItemButton" data-id="new" class="btn btn-medium btn-success pull-right">Encrypt and store!</button>
+        }
+        @Html.ActionLink("<- Back to my list", "", "", null, new { @class = "showList" })
+
+    </div>
+
+</div>

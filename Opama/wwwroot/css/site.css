@@ -1,0 +1,290 @@
+html, body {
+    font-family: 'Segoe UI', Verdana, sans-serif;
+    letter-spacing: -1px;
+}
+
+body.iFrame {
+    background: none;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 3px solid #438320;
+    margin: 1em;
+}
+
+body.iFrame > div {
+    background: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+body.iFrame #body {
+    padding-bottom: 4em;
+}
+
+#body {
+    min-height: 400px;
+}
+
+.miniCloser {
+    background: url('images/close_sprite.png');
+    resize: none;
+    background-position: left;
+    height: 26px;
+    overflow: hidden;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    width: 26px;
+    z-index: 15;
+    cursor: pointer;
+}
+
+    .miniCloser:hover {
+        background-position: right;
+    }
+
+#header {
+    padding: 0;
+    background-color: black;
+    height: 130px;
+    position: relative;
+}
+
+.signOutLink {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#signOutLink {
+    color: white;
+}
+
+a.homeLink, a.homeLink:hover {
+    text-decoration: none;
+    font-size: xx-large;
+    color: ghostwhite;
+}
+
+#main-content {
+    margin-top: 3em;
+}
+    
+.deleteItemIcon {
+    cursor: pointer;
+    margin-top: 1em;
+    float: right;
+}
+
+.adminUserActions {
+    margin-left: 1.5em;
+    margin-top: 2em;
+}   
+ 
+h1 {
+    display: inline;
+    /*height: 4em;*/
+    vertical-align: central;
+    font-weight: bold;
+}
+
+h2, h3 {
+    display: inline;
+    font-size: 20px;
+    line-height: 35px;
+    font-weight: bold;
+    /*margin-top: 2em;*/
+}
+
+h3 {
+    display: block; /*override*/
+}
+
+a {
+    color: #090;
+}
+
+.panelContent {
+    float: none;
+    margin: 0 auto;
+    background-color: rgb(255,255,255);
+    background-color: rgba(255,255,255,0.7);
+    min-height: 16em;
+    max-width: 100%;
+    margin-top: 2em;
+    padding: 1em;
+}
+
+.searchbox.input-group {
+    text-align: center;
+}
+
+name_input {
+    width: 93px;
+    margin-right: 6px;
+    float: left;
+}
+
+/* Alerts */
+.alertWrapper {
+    display: none;
+    position: fixed;
+    top: 3em;
+    right: 0;
+    left: 0;
+}
+.alertWrapper div {
+    margin: 0 auto;
+    float: none;
+}
+
+/* Icons */
+.sprite_web_info {
+    background-image: url("../images/web_sprites.png");
+    background-position: left -4101px;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+}
+
+/* Password checker */
+.password_strength_container {
+    height: 10px;
+    margin-top: 2px;
+    position: relative;
+    width: 218px;
+}
+
+.password_strength {
+    background-color: #C81818;
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 0;
+}
+
+.password_strength_bg {
+    background-color: #E8E8E8;
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.password_strength_separator {
+    background-color: #FFFFFF;
+    height: 4px;
+    left: 0;
+    position: absolute;
+    width: 2px;
+}
+
+.password_strength_desc_container {
+    width: 218px;
+}
+
+#password_strength_desc {
+    float: right;
+    font-size: 11px;
+    line-height: 16px;
+    padding-top: 2px;
+}
+
+.password_strength_icon {
+    display: none;
+    float: right;
+    margin-left: 3px;
+}
+
+#signUpButton, #signInButton {
+    float: right;
+}
+
+.signInLink {
+    display: block;
+    margin-top: 5em;
+}
+
+#signInButton {
+    margin-bottom: 10px;
+}
+
+.ajaxLoader {
+    background-image: url("images/ajax-loader.gif");
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: inherit;
+}
+
+.form-horizontal .control-label {
+    margin-right: 1em;
+    text-align: left;
+    font-style: italic;
+}
+
+.form-horizontal .controls {
+    margin-left: 1em;
+}
+
+.form-horizontal .control-group {
+    margin-bottom: 0.5em;
+}
+
+.value {
+    margin-left: 1.5em;
+    background-color: white;
+    font-weight: bold;
+}
+
+.password input, .url input {
+    width: 163px;
+}
+
+/*Google Chrome autocomplete="off" hack*/
+input[readonly] {
+    cursor: text;
+    background-color: #fff;
+}
+
+/* Override to prevent slide in of bootstrap modal (the password generator) */
+.modal.fade, .modal.fade.in {
+  top: 20%;
+  -webkit-transition: opacity 0.2s linear;
+     -moz-transition: opacity 0.2s linear;
+       -o-transition: opacity 0.2s linear;
+          transition: opacity 0.2s linear;
+}
+
+#pwdLengthModifier {
+    /*margin: 0 10px;*/
+    display: inline;
+}
+
+#pwdLengthModifier div {
+    margin-top: -8px;
+}
+
+.clearbox, .showList {
+    display: block;
+    clear: both;
+}
+
+.accordion-inner, .newItemForm {
+    background-color: #b1da86;
+    color: darkgreen;
+    padding-bottom: 3em;
+}
+
+.newItemForm {
+    padding: 1em 1em 3em;
+}
+
+#footer {
+    color: #343434;
+    height: 5em;
+    margin-top: 3em;
+    padding-top: 1em;
+    background-color: #cfcfcf;
+    border-top: 1px solid #808080;
+}

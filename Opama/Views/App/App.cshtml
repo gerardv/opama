@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Opama.ViewModels.MessageVM
+
+<script src="~/js/pwd_strength_meter.js"></script>
+
+<partial name="_SignInPanel" />
+<partial name="_RegisterPanel" />
+<partial name="_RecordsPanel" />
+<partial name="_NewItemPanel" />
+
+<div id="passwordGen" class="modal hide fade" role="dialog" aria-labelledby="Generate strong password" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"> </i></button>
+        <h3 id="passwordGenHeader">Generate strong password</h3>
+    </div>
+    <div class="modal-body">
+        <label>Your new password</label>
+        <input type="text" id="newPassword" disabled="disabled" />
+        <span class="help-block">Select what characters are included and set the password length.</span>
+        <input id="lCase" type="checkbox" class="checkbox inline" checked="checked" /> abc
+        <input id="uCase" type="checkbox" class="checkbox inline" checked="checked" /> ABC
+        <input id="numbers" type="checkbox" class="checkbox inline" checked="checked" /> 123
+        <input id="specials" type="checkbox" class="checkbox inline" /> #$%
+        <div id="pwdLengthModifier" class="btn-toolbar">
+            <div class="btn-group">
+                <a class="btn btn-mini" href="#"><i id="decPwdLength" class="icon-minus"> </i></a>
+                <a class="btn btn-mini" href="#"><i id="incPwdLength" class="icon-plus"> </i></a>
+            </div>
+        </div>
+        <span id="pwdLength">12</span> characters
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button id="usePassword" class="btn btn-success">Store this password</button>
+    </div>
+</div>
+
+@* Alert messages *@
+<div id="message" class="alertWrapper">
+    <div class="span4">
+        <div class="alert alert-success">
+            @*The next onclick event is bugfix for bootstrap's alert dismissal bug completely disabling (this alert / alerts).*@
+            <button type="button" class="close" onclick="$('#message').hide()">&times;</button>
+            <div id="messageContent">Just wanted to let you know.</div>
+        </div>
+    </div>
+</div>
+
+@{
+    if (Model != null)
+    {
+        <div id="serverMessage" class="alertWrapper" data-type="@Model.MType" data-message="@Model.MMessage">
+            <div class="span4">
+                <div class="alert alert-info">
+                    @*The next onclick event is bugfix for bootstrap's alert dismissal bug completely disabling (this alert / alerts).*@
+                    <button type="button" class="close" onclick="$('#serverMessage').hide()">&times;</button>
+                    @Model.MMessage
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@* Secret template for Mustache.js *@
+<script type="text/template" id="itemTemplate">
+    {{#Data}}
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <div class="accordion-toggle" data-toggle="collapse" data-parent="#records" data-target="#{{Id}}" data-id="{{Id}}">
+                {{ItemNumber}} -
+                {{Label}}
+            </div>
+        </div>
+        <div id="{{Id}}" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <form class="form-horizontal" novalidate="novalidate" data-id="{{Id}}">
+                    <div class="control-group">
+                        <label class="control-label" for="label_{{Id}}">Label</label>
+                        <div class="controls">
+                            <input type="text" data-id="{{Id}}" data-item_number="{{ItemNumber}}" name="Label" value="{{Label}}" placeholder="Label" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="url_{{Id}}">URL</label>
+                        <div class="controls url">
+                            <input type="url" data-id="{{Id}}" name="Url" value="{{URL}}" placeholder="URL" />
+                            <a href="{{URL}}" role="button" class="btn open-url" data-id="{{Id}}" data-toggle="modal" target="_blank"><i class="icon-share"> </i></a>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="username_{{Id}}">Username</label>
+                        <div class="controls">
+                            <input type="text" data-id="{{Id}}" name="Username" value="{{Username}}" placeholder="Username" autocomplete="off" onfocus="this.removeAttribute('readonly');" readonly />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="password_{{Id}}">Password</label>
+                        <div class="controls password">
+                            <input type="password" id="concealedPassword_{{Id}}" data-id="{{Id}}" name="PasswordPlaceholder" value="Password" autocomplete="off" placeholder="Password" onfocus="this.removeAttribute('readonly');" readonly />
+                            <input type="text" id="plainPassword_{{Id}}" data-id="{{Id}}" name="Password" value="{{Password}}" autocomplete="off" placeholder="Password" style="display: none" />
+                            <a href="#passwordGen" role="button" class="btn open-passwordGen" data-id="{{Id}}" data-toggle="modal"><i class="icon-wrench"> </i></a>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="email_{{Id}}">Email</label>
+                        <div class="controls">
+                            <input type="email" data-id="{{Id}}" name="Email" value="{{Email}}" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="remarks_{{Id}}">Remarks</label>
+                        <div class="controls">
+                            <textarea data-id="{{Id}}" name="Remarks" placeholder="Remarks">{{Remarks}}</textarea>
+                        </div>
+                    </div>
+                    <div class='btn btn-danger deleteItemIcon' data-id={{Id}}>Delete</div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{/Data}}
+
+</script>
+@section Scripts {
+    <script src="~/js/mustache.js"></script>
+    <script src="~/js/app.js"></script>
+}

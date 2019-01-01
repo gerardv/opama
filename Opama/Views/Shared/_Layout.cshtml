@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Opama</title>
+
+    <link rel="stylesheet" href="~/css/bootstrap-2.3.1-min.css" />
+    <link rel="stylesheet" href="~/css/site.css" /> @*ToDo: Fix minification*@
+
+    <script src="~/js/jquery-1.9.1.min.js"></script>
+    <script src="~/js/modernizr-2.6.2.js"></script>
+    <script src="~/js/bootstrap-2.3.1-min.js"></script>
+    <script src="~/js/sjcl.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=[Place your tag here]"></script> @*ToDo, or clear this.*@
+    <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', '[Place your tag here]'); /*ToDo, or clear this.*/
+    </script>
+
+</head>
+<body>
+    @*ToDo: Make header fixed*@
+    <div id="header" class="row-fluid">
+        <div class="span6 offset2">
+            <div>
+                <a class="homeLink" href="/">
+                    <img src="~/images/Opama_logo.svg" />
+                    Opama
+                </a>
+                @RenderSection("pageTitle", required: false)
+            </div>
+        </div>
+        <div class="span2 signOutLink">
+            <div id="profile">
+                @Html.ActionLink("Sign out", "", "", null, new { id = "signOutLink", style = "display: none;" } )
+            </div>
+        </div>
+    </div>
+    <div id="body">
+        <div id="main-content">
+            @RenderBody()
+        </div>
+    </div>
+    <div id="footer" class="row-fluid">
+        <div class="span2"></div>
+        <div class="span8">
+            @*ToDo: Make footer fixed*@
+            This password manager is powered by Opama. Get your own at <a href="https://github.io/gerardv/opama" target="_blank">https://github.io/gerardv/opama</a>.
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿<div id="signInPanel" class="panel" style="display: block">
+
+    <div class="span3 panelContent">
+
+        <h2>Sign in</h2>
+
+        @using (Html.BeginForm("signIn", "account", FormMethod.Post, new { id = "signInForm", novalidate = "novalidate" }))
+        {
+            @Html.ValidationSummary(true)
+            <input id="email" name="Email" type="email" placeholder="E-mail" />
+            <input id="password" name="Pwd" type="password" placeholder="Password" />
+            <button id="signInButton" class="btn btn-medium btn-success pull-right">Sign in</button>
+            <input id="encPassword" name="Params.ct" type="hidden" />
+            <input id="salt" name="salt" type="hidden" />
+            <input id="iv" name="iv" type="hidden" />
+            <span class="clearbox">or <a id="registerLink" href="~/account/register">register</a></span><br />
+        }
+
+    </div>
+
+</div>
