@@ -39,7 +39,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Gerard Veneman** - *Initial work* - [Personal space on GitHub](https://github.com/gerardv)
+* **Gerard Veneman** - *Initial work* - [Find me on GitHub](https://github.com/gerardv) or [Stack Overflow](https://stackoverflow.com/users/796206/gerardv?tab=profile)
 
 ## License
 
