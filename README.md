@@ -5,27 +5,25 @@ Encryption is performed client-side by the Stanford Javascript Crypto Library (h
 
 ## Getting Started
 
-Opama is (currently) provided as a Visual Studio 2017 solution. [Download](https://visualstudio.microsoft.com/downloads/) and install VS 2017 from Microsoft, the Community Edition works fine.
+Opama is (currently) provided as a Visual Studio 2017 solution targeting .Net Core v2.1. [Download](https://visualstudio.microsoft.com/downloads/) and install VS 2017 from Microsoft, the Community Edition works fine.
 Opama is tested on IIS, backed by a MS SQL database. In development mode, the source code uses localDb.
 
 ### Prerequisites
 
-To just use Opama, you need access to (preferrably) an IIS server backed by a MS SQL Server. You need a database and need to know how to write a connection string to connect a .Net Core MVC web application to the database. You can find plenty of examples online.
+To just use Opama, you need access to (preferrably) an IIS server backed by a MS SQL Server. You need a database and need to know how to write a connection string to connect a .Net application to the database. You can find plenty of examples online. If you use a different web server with a .Net Core runtime or a different sql server, please let me know so I can credit you with for an additional install option.
 
-If you want to examine or - better - enhance the source code and aid in the development of Opama, you'll need knowledge of .Net Core MVC, the Razor rendering engine and javascript.
+If you want to examine or - better - enhance the source code and aid in the development of Opama, you'll need knowledge of .Net Core MVC, the Razor rendering engine, HTML, CSS and javascript.
 Since the first version of Opama was written in 2013, it still uses jQuery 1.9.1 and Bootstrap 2.3.1. Other libraries used are mustache.js, modernizr (2.6.2) and off course sjcl.js as the encryption core.
 
 ### Installing
 
-1. Create the right connection string for your MS SQL Server setup. Make sure the account running Opama has the CREATE DATABASE privilege.
+1. Create a web application using IIS manager. Make sure the SMTP settings are right so you can verify your account from the e-mail sent by the application. There's a workaround in step 4 if you're unable to setup SMTP settings in IIS.
 
-2. Create a web application using IIS manager. Make sure the SMTP settings are right or you won't be able to verify your account.
+2. Download the latest release and unzip the files in the directory you pointed the IIS application to.
 
-3. Download the latest release and unzip the files. Open the VS solution and enter the connection string between the quotation marks in line 35 of file Startup.cs.
+3. Enter the connection string for your MS SQL Server setup in appsettings.json file in the application's root folder.
 
-4. Build your customized solution and copy the result to the folder that the application from step 2 points to.
-
-5. Point your browser to the website created in step 2, click the 'register' link, register, confirm your account (check your inbox), log in and create your first secret item. Click the 'Encrypt and store' button, sign out, sign back in and find your secret again.
+4. Point your browser to the website created in step 1, click the 'register' link, register, confirm your account (check your inbox), log in and create your first secret item. Click the 'Encrypt and store' button, sign out, sign back in and find your secret again. If you didn't receive an email or get a SMTP error when registering, open the database in SQL Server Management Studio, browse to the database and open the Users table. Find your record, set the 'disabled' field to false and clear the emailConfirmationCode field.
 
 Do not use a non-Chromium MS Edge or Internet Explorer or expect very poor performance due to the way Edge handles the sjcl library. Because the fastest available javascript engine is the measure by which the number of encryption iterations should be set to result in a hashing time of 200ms+. For Edge this is 150, for Chrome this is 5000 or so.
 
