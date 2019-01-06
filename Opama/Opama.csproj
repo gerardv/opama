@@ -8,6 +8,11 @@
     <AssemblyVersion>2.0.*</AssemblyVersion>
 	<Deterministic>false</Deterministic>
 	<FileVersion>2.1.0</FileVersion>
+	<Copyright>Gerard Veneman</Copyright>
+	<PackageLicenseUrl>https://github.com/gerardv/opama/blob/master/LICENSE</PackageLicenseUrl>
+	<PackageProjectUrl>https://github.com/gerardv/opama/</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/gerardv/opama.git</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
