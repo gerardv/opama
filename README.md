@@ -28,7 +28,7 @@ Since the first version of Opama was written in 2013, it still uses jQuery 1.9.1
 
 Do not use a non-Chromium MS Edge or Internet Explorer or expect very poor performance due to the way Edge handles the sjcl library. Because the fastest available javascript engine is the measure by which the number of encryption iterations should be set to result in a hashing time of 200ms+. For Edge this is 150, for Chrome this is 5000 or so.
 
-## How to build and run in Docker
+### How to build and run in Docker
 
 The application can also be run in a Docker container. The following steps provide a guideline how this can be achieved. The configuration examples uses a postfix mail and sqlserver (localdb is not support on Linux) as additional services. 
 
