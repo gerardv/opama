@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Opama.Configuration;
 using Opama.EMailTemplates;
 using Opama.Models;
 using Opama.ViewModels;
@@ -13,10 +15,12 @@ namespace Opama.Web.Controllers
     public class AppController : Controller
     {
         private ApplicationDbContext _db;
+        private AppSettings _appSettings;
 
-        public AppController( ApplicationDbContext db )
+        public AppController( ApplicationDbContext db, IOptions<AppSettings> appSettings)
         {
             _db = db;
+            _appSettings = appSettings.Value;
         }
 
         // Serve the app.
@@ -35,7 +39,8 @@ namespace Opama.Web.Controllers
                 newUser.EmailConfirmationCode = Guid.NewGuid().ToString();
                 newUser.RegisteredOn = new DateTime(System.DateTime.Now.Ticks);
 
-                SmtpClient client = new SmtpClient("localhost"); // Note: configure your preferred e-mail server or (temporarily) install Papercut (https://github.com/ChangemakerStudios/Papercut/releases).
+               
+                SmtpClient client = new SmtpClient(_appSettings.MailHost); // Note: configure your preferred e-mail server or (temporarily) install Papercut (https://github.com/ChangemakerStudios/Papercut/releases).
                 string HTMLBody = HTMLEMailScaffold.HTMLBody;
 
                 // There still seems to be some duplicate code below. ToDo: DRY this.
@@ -63,7 +68,7 @@ namespace Opama.Web.Controllers
 
                         MailMessage verificationEmail = new MailMessage
                         {
-                            From = new MailAddress("your_email@here.com"),
+                            From = new MailAddress(_appSettings.SendFrom),
                             Subject = VerificationEmail.Subject.ToString(),
                         };
                         verificationEmail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(HTMLBody, null, "text/html"));
@@ -98,7 +103,7 @@ namespace Opama.Web.Controllers
 
                         MailMessage verificationEmail = new MailMessage
                         {
-                            From = new MailAddress("your_email@here.com"),
+                            From = new MailAddress(_appSettings.SendFrom),
                             Subject = VerificationEmail.Subject.ToString(),
                         };
                         verificationEmail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(HTMLBody, null, "text/html"));

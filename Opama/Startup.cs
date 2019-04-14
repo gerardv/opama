@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Opama.Configuration;
 using Opama.Models;
 
 namespace Opama
@@ -13,9 +14,15 @@ namespace Opama
     {
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment hostingEnvironment)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                  .SetBasePath(hostingEnvironment.ContentRootPath)
+                  .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                  .AddJsonFile($"appsettings.{hostingEnvironment.EnvironmentName}.json", optional: true)
+                  .AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -27,6 +34,11 @@ namespace Opama
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+
+            // Configure application configuration.
+            var appSettings = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettings);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
