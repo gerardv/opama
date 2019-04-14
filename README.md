@@ -28,6 +28,56 @@ Since the first version of Opama was written in 2013, it still uses jQuery 1.9.1
 
 Do not use a non-Chromium MS Edge or Internet Explorer or expect very poor performance due to the way Edge handles the sjcl library. Because the fastest available javascript engine is the measure by which the number of encryption iterations should be set to result in a hashing time of 200ms+. For Edge this is 150, for Chrome this is 5000 or so.
 
+### How to build and run in Docker
+
+The application can also be run in a Docker container. The following steps provide a guideline how this can be achieved. The configuration examples uses a postfix mail and sqlserver (localdb is not support on Linux) as additional services. 
+
+1. Clone the repository: git clone https://github.com/gerardv/opama.it opama 
+   
+   The repository contains a DockerFile to build the application.
+
+2. Add a docker-compose.yml to the current directory with the following content. 
+
+       version: "3"
+         services:
+           opama:
+             build: opama/.
+             container_name: opama
+             environment:
+               ConnectionStrings__DefaultConnection : "Server=db;Database=Opama;User=sa;Password={SuperSecretPassword}"
+               AppSettings__SendFrom : "{EmailAddress}"
+               AppSettings__MailHost : "mail"
+             ports:
+                 - "8000:80"
+             depends_on:
+               - db
+               - mail
+           db:
+             image: "mcr.microsoft.com/mssql/server"
+             container_name: sqlserver
+             environment:
+               SA_PASSWORD: "SuperSecretPassword"
+               ACCEPT_EULA: "Y"
+   
+           mail:
+             image: boky/postfix:latest
+             container_name: opamamail
+             environment:
+               ALLOWED_SENDER_DOMAINS: "{MyDomain}"
+
+3. Build the image
+
+~~~
+docker-compose build
+~~~
+
+4. And run the container
+
+~~~
+docker-compose up
+~~~
+
+   
 ## Contributing
 
 Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
