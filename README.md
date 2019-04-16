@@ -77,10 +77,6 @@ docker-compose build
 docker-compose up
 ~~~
 
-   
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
@@ -89,6 +85,14 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 ## Authors
 
 * **Gerard Veneman** - *Initial work* - [Find me on GitHub](https://github.com/gerardv) or [Stack Overflow](https://stackoverflow.com/users/796206/gerardv?tab=profile)
+
+## Contributors
+
+* **saschavv** [(GitHub)](https://github.com/saschavv)
+   
+# Want to contribute too?
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
 
