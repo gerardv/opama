@@ -104,7 +104,7 @@ namespace Opama.Web.Controllers
                         MailMessage verificationEmail = new MailMessage
                         {
                             From = new MailAddress(_appSettings.SendFrom),
-                            Subject = VerificationEmail.Subject.ToString(),
+                            Subject = VerificationEmail.Subject.ToString()
                         };
                         verificationEmail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(HTMLBody, null, "text/html"));
                         verificationEmail.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(plainBody, null, "text/plain"));

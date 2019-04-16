@@ -123,13 +123,12 @@
                         // Clear old records
                         records = { Data: [] };
                         // Decrypt secrets
-                        i = 1;
                         data.records.value.forEach(function (item) {
                             var secret = sjcl.json.decrypt(key, item.value, item.params);
                             secret = JSON.parse(secret);
                             secret.Id = item.id;
-                            secret.ItemNumber = i;
-                            records.Data[i++ - 1] = secret;
+                            secret.ItemNumber = records.Data.length + 1;
+                            records.Data.push(secret);
                         });
                         render(records);
                     }
@@ -325,6 +324,8 @@
 
         // Create a JSON object from the form values.
         value = {
+            Id: $(form).data('id'),
+            ItemNumber:$(form).find('input[name=\'Label\']').data('item_number'),
             Label: $(form).find('input[name=\'Label\']').val(),
             URL: $(form).find('input[name=\'Url\']').val(),
             Username: $(form).find('input[name=\'Username\']').val(),
@@ -334,7 +335,11 @@
         };
 
         // Update local records
-        records.Data[value.Id] = value;
+        var index = records.Data.findIndex( function(o) { return o.Id == value.Id; } );
+
+
+        records.Data[index] = value;
+
 
         // Encrypt item
         value = sjcl.json.encrypt(key, JSON.stringify(value), itemParams);
