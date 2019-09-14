@@ -44,7 +44,7 @@ namespace Opama
 
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>
-                (options => options.UseSqlServer(connection));
+                (options => options.UseSqlite(connection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
