@@ -1,4 +1,4 @@
-[![Build Status](https://veneman.visualstudio.com/Opama_open/_apis/build/status/gerardv.opama?branchName=master)](https://veneman.visualstudio.com/Opama_open/_build/latest?definitionId=4&branchName=master)
+[![Build Status](https://dev.azure.com/veneman/Opama_open/_apis/build/status/gerardv.opama?branchName=master)](https://dev.azure.com/veneman/Opama_open/_build/latest?definitionId=5&branchName=master)
 # Opama
 
 Opama (Online Password Manager) is a .Net Core MVC web application that generates and securely stores strong passwords (and other secrets) with end-to-end encryption.
