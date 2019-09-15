@@ -12,6 +12,7 @@ using System.Net.Mail;
 
 namespace Opama.Web.Controllers
 {
+    [RequireHttps]
     public class AppController : Controller
     {
         private ApplicationDbContext _db;
