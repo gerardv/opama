@@ -3,7 +3,7 @@ html, body {
     letter-spacing: -1px;
 }
 
-body.iFrame {
+/*body.iFrame {
     background: none;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -21,7 +21,7 @@ body.iFrame > div {
 
 body.iFrame #body {
     padding-bottom: 4em;
-}
+}*/
 
 #body {
     min-height: 400px;
@@ -46,10 +46,16 @@ body.iFrame #body {
     }
 
 #header {
-    padding: 0;
-    background-color: black;
+    padding: 0; 
+    background-color: whitesmoke;
     height: 130px;
     position: relative;
+}
+
+.header-logo {
+    padding: .5em;
+    max-width: 150px;
+    max-height: 150px;
 }
 
 .signOutLink {
@@ -64,7 +70,10 @@ body.iFrame #body {
 a.homeLink, a.homeLink:hover {
     text-decoration: none;
     font-size: xx-large;
-    color: ghostwhite;
+    color: darkslategrey;
+    display: inline-block;
+    margin-bottom: 1.0em;
+    white-space: nowrap;
 }
 
 #main-content {
@@ -102,7 +111,7 @@ h3 {
 }
 
 a {
-    color: #090;
+    color: #ff6500;
 }
 
 .panelContent {
@@ -271,7 +280,7 @@ input[readonly] {
 }
 
 .accordion-inner, .newItemForm {
-    background-color: #b1da86;
+    background-color: whitesmoke;
     color: darkgreen;
     padding-bottom: 3em;
 }
@@ -285,6 +294,5 @@ input[readonly] {
     height: 5em;
     margin-top: 3em;
     padding-top: 1em;
-    background-color: #cfcfcf;
-    border-top: 1px solid #808080;
+    background-color: whitesmoke;
 }
