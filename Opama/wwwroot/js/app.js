@@ -16,6 +16,8 @@
         // Bind various button and link clicks.
         $('#signInForm').bind('submit', function (event) {
             event.preventDefault();
+            show('#waitingPanel');
+            throughput = new Date();
             extractCredentials();
             getSalt();
         });
@@ -143,7 +145,14 @@
     var render = function (dataset) {
         var recordsHtml = Mustache.to_html(template, dataset);
         $('#records').html(recordsHtml);
-        show('#recordsPanel');
+
+        // Make sure the spinner lasts at least 2 seconds. This makes the app feel more robust and secure... go figure!
+        var timeElapsed = new Date() - throughput;
+        if (timeElapsed < 1500) timeElapsed = 2000;
+        setTimeout(function () {
+            show('#recordsPanel');
+        }, timeElapsed);
+
         $('#searchbox').focus();
     };
 

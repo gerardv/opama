@@ -63,9 +63,6 @@ body.iFrame #body {
     bottom: 0;
     right: 0;
 }
-#signOutLink {
-    color: white;
-}
 
 a.homeLink, a.homeLink:hover {
     text-decoration: none;
