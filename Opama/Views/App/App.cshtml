@@ -33,7 +33,7 @@
         <span id="pwdLength">12</span> characters
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close without saving</button>
         <button id="usePassword" class="btn btn-warning">Store this password</button>
     </div>
 </div>
@@ -101,7 +101,8 @@
                         <div class="controls password">
                             <input type="password" id="concealedPassword_{{Id}}" data-id="{{Id}}" name="PasswordPlaceholder" value="Password" autocomplete="off" placeholder="Password" onfocus="this.removeAttribute('readonly');" readonly />
                             <input type="text" id="plainPassword_{{Id}}" data-id="{{Id}}" name="Password" value="{{Password}}" autocomplete="off" placeholder="Password" style="display: none" />
-                            <a href="#passwordGen" role="button" class="btn open-passwordGen" data-id="{{Id}}" data-toggle="modal"><i class="icon-wrench"> </i></a>
+                            <a id="passwordCopy_{{Id}}" href="#passwordCopy" role="button" class="btn copy-password" data-id="{{Id}}" data-toggle="modal"><i data-id="{{Id}}" class="icon-book"> </i></a>
+                            <a id="passwordGen_{{Id}}" href="#passwordGen" role="button" class="btn open-passwordGen" data-id="{{Id}}" data-toggle="modal" style="display: none"><i class="icon-wrench"> </i></a>
                         </div>
                     </div>
                     <div class="control-group">

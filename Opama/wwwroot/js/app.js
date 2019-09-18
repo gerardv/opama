@@ -5,7 +5,7 @@
         salt: sjcl.random.randomWords(2, 0) }; // The initial salt, used for new registrations only.
     var records = { Data: [] };                // The user's secrets.
     var activePanel = '#signInPanel';          // Default panel.
-    var template = $('#itemTemplate').html();  // The mustache template for items
+    var template = $('#itemTemplate').html();  // The mustache template for items.
 
     Opama.Init = function () {
         // Check whether there's a special message sent along by the server.
@@ -17,7 +17,6 @@
         $('#signInForm').bind('submit', function (event) {
             event.preventDefault();
             show('#waitingPanel');
-            throughput = new Date();
             extractCredentials();
             getSalt();
         });
@@ -48,6 +47,7 @@
         });
         $('#newItemForm').bind('submit', function (event) {
             event.preventDefault();
+            show('#waitingPanel');
             encryptAndStore(this);
         });
         $('#records').delegate('div.deleteItemIcon', 'click', function (event) {
@@ -132,7 +132,7 @@
                             secret.ItemNumber = records.Data.length + 1;
                             records.Data.push(secret);
                         });
-                        render(records);
+                        render(records, 2000);
                     }
                 } else {
                     mAlert('User account unknown or disabled or wrong password.');
@@ -142,39 +142,57 @@
         });
     };
 
-    var render = function (dataset) {
+    var render = function (dataset, timeout = 0) {
         var recordsHtml = Mustache.to_html(template, dataset);
         $('#records').html(recordsHtml);
 
-        // Make sure the spinner lasts at least 2 seconds. This makes the app feel more robust and secure... go figure!
-        var timeElapsed = new Date() - throughput;
-        if (timeElapsed < 1500) timeElapsed = 2000;
+        // Make sure the spinner lasts at least 'timeout' seconds. This makes the app feel more robust and secure... go figure!
         setTimeout(function () {
             show('#recordsPanel');
-        }, timeElapsed);
+        }, timeout);
 
         $('#searchbox').focus();
     };
 
     // The password field
 
-    // On focus, swap concealed for plain password field
+    // On focus, swap concealed for plain password field and swap copy button for generate password toolbutton
     $("body").on("focusin", $('input.password'), function (e) {
         if ($(e.target).attr('name') === 'PasswordPlaceholder') {
-            var brother = document.getElementById('plainPassword_' + $(e.target).data('id'));
+            var plainTextPassword = document.getElementById('plainPassword_' + $(e.target).data('id'));
+            var copyPassword = document.getElementById('passwordCopy_' + $(e.target).data('id'));
+            var genPassword = document.getElementById('passwordGen_' + $(e.target).data('id'));
             $(e.target).css('display', 'none');
-            $(brother).css('display', 'inline');
-            $(brother).focus();
+            $(plainTextPassword).css('display', 'inline');
+            $(copyPassword).css('display', 'none');
+            $(genPassword).css('display', 'inline');
+            $(plainTextPassword).focus();
         }
     });
 
     // On focus out, swap plain for concealed password field
     $('body').on('focusout', $('input.password'), function (e) {
         if ($(e.target).attr('name') === 'Password') {
-            var sister = document.getElementById('concealedPassword_' + $(e.target).data('id'));
+            var concealedPassword = document.getElementById('concealedPassword_' + $(e.target).data('id'));
             $(e.target).css('display', 'none');
-            $(sister).css('display', 'inline');
+            $(concealedPassword).css('display', 'inline');
         }
+    });
+
+    // On focus out, swap swap generate password toolbutton for copy button
+    $('body').on('focusout', $('a'), function (e) {
+        if ($(e.target).attr('href') === '#passwordGen') {
+            var copyPassword = document.getElementById('passwordCopy_' + $(e.target).data('id'));
+            var genPassword = document.getElementById('passwordGen_' + $(e.target).data('id'));
+            $(genPassword).css('display', 'none');
+            $(copyPassword).css('display', 'inline');
+        }
+    });
+
+    // Copy the item password to the clipboard
+    $('body').on("click", ".copy-password", function (e) {
+        var plainTextPassword = document.getElementById('plainPassword_' + $(e.target).data('id'));
+        setClipboard( $(plainTextPassword).val() );
     });
 
     // Passing the item id to the passwordGen 
@@ -274,7 +292,7 @@
                             return obj.Id !== id;
                         });
                     }
-                    render(records);
+                    render(records, 0);
                 }
             });
         }
@@ -283,7 +301,7 @@
     // Event handler allowing a user to return to their list w/o signing in again.
     $('.showList').on('click', function (event) {
         event.preventDefault();
-        render(records);
+        render(records, 0);
     });
 
     // Listener on the search input that filters realtime.
@@ -292,7 +310,7 @@
             searchPhrase = $("#searchbox").val().toLowerCase(); // We're doing case insensitive search
 
         if (searchPhrase === null) { // The user is probably trying to clear the search results.
-            render(records);
+            render(records, 0);
             exit;
         }
 
@@ -305,7 +323,7 @@
             }
         }
 
-        render(viewset);
+        render(viewset, 0);
     });
 
     // Display an arbitrary alert message for 5 seconds by default. displayTime can be overridden.
@@ -381,6 +399,17 @@
         // Used with courtesy, check https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript#46181
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
+    }
+
+    function setClipboard(value) {
+        // Used with courtesy, check https://stackoverflow.com/questions/31593297/using-execcommand-javascript-to-copy-hidden-text-to-clipboard#42416105
+        var tempInput = document.createElement("input");
+        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+        tempInput.value = value;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
     }
 
     var register = function () {
