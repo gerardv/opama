@@ -3,28 +3,9 @@ html, body {
     letter-spacing: -1px;
 }
 
-body.iFrame {
-    background: none;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    border: 3px solid #438320;
-    margin: 1em;
-}
-
-body.iFrame > div {
-    background: white;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-}
-
-body.iFrame #body {
-    padding-bottom: 4em;
-}
-
 #body {
     min-height: 400px;
+    background-color: black;
 }
 
 .miniCloser {
@@ -46,7 +27,7 @@ body.iFrame #body {
     }
 
 #header {
-    padding: 0;
+    padding: 0; 
     background-color: black;
     height: 130px;
     position: relative;
@@ -64,7 +45,10 @@ body.iFrame #body {
 a.homeLink, a.homeLink:hover {
     text-decoration: none;
     font-size: xx-large;
-    color: ghostwhite;
+    color: whitesmoke;
+    display: inline-block;
+    margin-bottom: 1.0em;
+    white-space: nowrap;
 }
 
 #main-content {
@@ -102,14 +86,15 @@ h3 {
 }
 
 a {
-    color: #090;
+    color: lawngreen;
 }
 
 .panelContent {
     float: none;
     margin: 0 auto;
-    background-color: rgb(255,255,255);
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: whitesmoke;
     min-height: 16em;
     max-width: 100%;
     margin-top: 2em;
@@ -233,7 +218,7 @@ name_input {
 
 .value {
     margin-left: 1.5em;
-    background-color: white;
+    background-color: whitesmoke;
     font-weight: bold;
 }
 
@@ -244,7 +229,7 @@ name_input {
 /*Google Chrome autocomplete="off" hack*/
 input[readonly] {
     cursor: text;
-    background-color: #fff;
+    background-color: whitesmoke;
 }
 
 /* Override to prevent slide in of bootstrap modal (the password generator) */
@@ -281,10 +266,9 @@ input[readonly] {
 }
 
 #footer {
-    color: #343434;
+    color: whitesmoke;
     height: 5em;
     margin-top: 3em;
     padding-top: 1em;
-    background-color: #cfcfcf;
-    border-top: 1px solid #808080;
+    background-color: black;
 }
