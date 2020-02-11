@@ -33,13 +33,16 @@ html, body {
     position: relative;
 }
 
+.header-logo {
+    padding: .5em;
+    max-width: 150px;
+    max-height: 150px;
+}
+
 .signOutLink {
     position: absolute;
     bottom: 0;
     right: 0;
-}
-#signOutLink {
-    color: white;
 }
 
 a.homeLink, a.homeLink:hover {
@@ -256,7 +259,7 @@ input[readonly] {
 }
 
 .accordion-inner, .newItemForm {
-    background-color: #b1da86;
+    background-color: whitesmoke;
     color: darkgreen;
     padding-bottom: 3em;
 }
