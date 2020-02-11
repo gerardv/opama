@@ -173,9 +173,19 @@
     // On focus out, swap plain for concealed password field
     $('body').on('focusout', $('input.password'), function (e) {
         if ($(e.target).attr('name') === 'Password') {
+
             var concealedPassword = document.getElementById('concealedPassword_' + $(e.target).data('id'));
             $(e.target).css('display', 'none');
             $(concealedPassword).css('display', 'inline');
+
+            // Swap copy button back in and generate password button out.
+            var copyPassword = document.getElementById('passwordCopy_' + $(e.target).data('id'));
+            var genPassword = document.getElementById('passwordGen_' + $(e.target).data('id'));
+            if ( e.relatedTarget !== genPassword ) { // If foces didn't move to genPassword (todo: and we didn't click it), set focus to copyPassword instead.
+                $(genPassword).css('display', 'none');
+                $(copyPassword).css('display', 'inline');
+                //$(copyPassword).focus();
+            }
         }
     });
 
