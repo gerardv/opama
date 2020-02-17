@@ -1,10 +1,6 @@
 html, body {
     font-family: 'Segoe UI', Verdana, sans-serif;
     letter-spacing: -1px;
-}
-
-#body {
-    min-height: 400px;
     background-color: black;
 }
 
@@ -31,6 +27,7 @@ html, body {
     background-color: black;
     height: 130px;
     position: relative;
+    border-bottom: 1px solid darkgreen;
 }
 
 .header-logo {
@@ -274,4 +271,5 @@ input[readonly] {
     margin-top: 3em;
     padding-top: 1em;
     background-color: black;
+    border-top: 1px solid darkgreen;
 }
