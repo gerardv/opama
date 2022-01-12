@@ -35,12 +35,15 @@ namespace Opama
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             // Configure application configuration.
             var appSettings = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettings);
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options =>
+            {
+                options.EnableEndpointRouting = false;
+            }
+            ).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>
