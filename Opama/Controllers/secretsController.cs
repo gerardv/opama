@@ -23,12 +23,12 @@ namespace OPSA.Web.Controllers
             }
             else
             {
-                IQueryable<Object> records = _db.Secrets.Where(i => i.UserId == user.Id).Select(j => new
+                IQueryable<Object> records = _db.Secrets.Where(i => i.UserId.CompareTo(user.Id) > 0).Select(j => new
                 {
                     j.Id,
                     j.Value
                 });
-                
+
                 result.Value = new { success = true, records = Json(records) };
             }
 
